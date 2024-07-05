@@ -1,4 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const screenHeight = Dimensions.get('window').height;
+const modalHeight = screenHeight * 0.3; // Assuming maxHeight: '50%'
+const marginTop = (screenHeight - modalHeight) / 2;
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,6 +16,7 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: '#186F65',
   },
   scrollContainer: {
     alignItems: 'center',
@@ -35,6 +40,8 @@ export const styles = StyleSheet.create({
   },
   headerCell: {
     fontWeight: 'bold',
+    fontSize: 16,
+    color: '#186F65',
   },
   mergedCell: {
     flex: 1,
@@ -60,24 +67,28 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     width: '80%',
     maxHeight: '50%',
+    marginTop: marginTop,
+    marginBottom: marginTop,
   },
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 15,
+    marginTop: 15,
+    color: '#186F65',
   },
   modalText: {
     fontSize: 16,
     marginBottom: 20,
     textAlign: 'center',
   },
-  closeButton: {
-    padding: 10,
-    backgroundColor: '#186F65',
-    borderRadius: 5,
+  closeIconContainer: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
-  closeButtonText: {
-    color: 'white',
-    fontSize: 16,
+  closeIcon: {
+    width: 24,
+    height: 24,
   },
 });

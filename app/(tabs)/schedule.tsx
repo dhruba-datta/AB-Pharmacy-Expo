@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, ScrollView, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Modal, TouchableWithoutFeedback, Image } from 'react-native';
 import Papa from 'papaparse';
 import { styles } from '@/styles/schedule'; // Updated import path
 
 const SCHEDULE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYGe49CMfHtSVXwpeytgh5FvCT-06ec539uGMx25oWgEzZo1RvBZaGgZpPTDDW2w/pub?gid=927279133&output=csv';
+const closeIcon = require('@/assets/icons/close.png'); // Import the close icon
 
 interface ScheduleData {
   marketName: string;
@@ -89,11 +90,11 @@ const Schedule = () => {
           <View style={styles.modalOverlay} />
         </TouchableWithoutFeedback>
         <View style={styles.modalContainer}>
+          <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.closeIconContainer}>
+            <Image source={closeIcon} style={styles.closeIcon} />
+          </TouchableOpacity>
           <Text style={styles.modalTitle}>{selectedMarketName}</Text>
           <Text style={styles.modalText}>{selectedDescription}</Text>
-          <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.closeButton}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
         </View>
       </Modal>
     </View>
