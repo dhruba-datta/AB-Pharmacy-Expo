@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native';
 import Papa from 'papaparse';
+import { styles } from '@/styles/schedule';
 
 const SCHEDULE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYGe49CMfHtSVXwpeytgh5FvCT-06ec539uGMx25oWgEzZo1RvBZaGgZpPTDDW2w/pub?gid=927279133&output=csv';
 
+interface ScheduleData {
+  marketName: string;
+  description: string;
+  order: string;
+  delivery: string;
+}
+
 const Schedule = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<ScheduleData[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedDescription, setSelectedDescription] = useState('');
   const [selectedMarketName, setSelectedMarketName] = useState('');
@@ -15,42 +23,45 @@ const Schedule = () => {
       .then(response => response.text())
       .then(text => {
         Papa.parse(text, {
-          header: true,
+          header: false,
           skipEmptyLines: true,
           complete: (results) => {
-            const relevantData = results.data.slice(2).map(row => ({
-              marketName: row['_1'],
-              description: row['_2'],
-              order: row['_3'],
-              delivery: row['_4'],
+            console.log('Parsed results:', results.data); // Log the parsed data
+            const rows = (results.data as string[][]).slice(3); // Skip the first two rows and cast to string[][]
+            const relevantData = rows.map(row => ({
+              marketName: row[1] || '',
+              description: row[2] || '',
+              order: row[3] || '',
+              delivery: row[4] || '',
             }));
             setData(relevantData);
+            console.log('Relevant data:', relevantData); // Log the relevant data
           },
         });
       })
       .catch(error => console.error('Error fetching CSV:', error));
   }, []);
 
-  const handleMarketNamePress = (marketName, description) => {
+  const handleMarketNamePress = (marketName: string, description: string) => {
     setSelectedMarketName(marketName);
     setSelectedDescription(description);
     setModalVisible(true);
   };
 
-  const renderMergedRow = (index, item, data) => {
-    const isOrderMerged = index < 3 && data[index].order === data[index + 1].order;
-    const isDeliveryMerged = index < 3 && data[index].delivery === data[index + 1].delivery;
+  const renderMergedRow = (index: number, item: ScheduleData) => {
+    const isOrderMerged = item.order !== '';
+    const isDeliveryMerged = item.delivery !== '';
 
     return (
       <View key={index} style={styles.tableRow}>
         <TouchableOpacity onPress={() => handleMarketNamePress(item.marketName, item.description)} style={styles.tableCell}>
           <Text>{item.marketName}</Text>
         </TouchableOpacity>
-        <Text style={styles.tableCell}>
-          {(!isOrderMerged || index === 0) && item.order}
+        <Text style={[styles.tableCell, isOrderMerged ? styles.mergedCell : null]}>
+          {isOrderMerged && item.order}
         </Text>
-        <Text style={styles.tableCell}>
-          {(!isDeliveryMerged || index === 0) && item.delivery}
+        <Text style={[styles.tableCell, isDeliveryMerged ? styles.mergedCell : null]}>
+          {isDeliveryMerged && item.delivery}
         </Text>
       </View>
     );
@@ -65,7 +76,7 @@ const Schedule = () => {
           <Text style={[styles.tableCell, styles.headerCell]}>Order</Text>
           <Text style={[styles.tableCell, styles.headerCell]}>Delivery</Text>
         </View>
-        {data.map((item, index) => renderMergedRow(index, item, data))}
+        {data.map((item, index) => renderMergedRow(index, item))}
       </ScrollView>
 
       <Modal
@@ -90,82 +101,3 @@ const Schedule = () => {
 };
 
 export default Schedule;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  scrollContainer: {
-    alignItems: 'center',
-    width: '100%',
-  },
-  tableHeader: {
-    flexDirection: 'row',
-    backgroundColor: '#f1f1f1',
-    padding: 10,
-    width: '100%',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  tableRow: {
-    flexDirection: 'row',
-    padding: 10,
-    width: '100%',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
-  tableCell: {
-    flex: 1,
-    padding: 5,
-    textAlign: 'left',
-  },
-  headerCell: {
-    fontWeight: 'bold',
-  },
-  modalOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    margin: 50,
-    padding: 20,
-    borderRadius: 10,
-    width: '80%',
-    maxHeight: '50%',
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  modalText: {
-    fontSize: 16,
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  closeButton: {
-    padding: 10,
-    backgroundColor: '#186F65',
-    borderRadius: 5,
-  },
-  closeButtonText: {
-    color: 'white',
-    fontSize: 16,
-  },
-});
