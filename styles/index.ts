@@ -49,11 +49,11 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#186F65',
+    marginTop: 20,
   },
   showAll: {
     fontSize: 14,
     color: '#186F65',
-    textDecorationLine: 'underline',
   },
   flatListContentContainer: {
     paddingHorizontal: 10,
@@ -64,6 +64,8 @@ export const styles = StyleSheet.create({
     padding: 10,
     marginRight: 10,
     width: 150,
+    height: 250,
+    justifyContent: 'space-between',
   },
   productInfo: {
     alignItems: 'center',
@@ -81,6 +83,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
+    height: 40, // Adjust height to fit one or two lines
   },
   buttonContainer: {
     alignItems: 'center',
@@ -92,34 +95,43 @@ export const styles = StyleSheet.create({
   },
   addToCartButton: {
     backgroundColor: '#186F65',
-    borderRadius: 5,
-    paddingVertical: 5,
+    paddingVertical: 8,
     paddingHorizontal: 15,
+    borderRadius: 5,
   },
   addToCartText: {
     color: '#fff',
     fontSize: 14,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   outOfStockButton: {
-    backgroundColor: '#d3d3d3',
+    backgroundColor: 'red',
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   quantitySelector: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 90,
+    height: 34,
   },
   quantityButtonContainer: {
     backgroundColor: '#186F65',
     borderRadius: 5,
-    padding: 5,
-    marginHorizontal: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   quantityButton: {
     color: '#fff',
-    fontSize: 14,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   quantityText: {
-    fontSize: 14,
-    color: '#186F65',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   categoryGrid: {
     flexDirection: 'row',
