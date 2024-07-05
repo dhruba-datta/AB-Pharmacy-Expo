@@ -20,10 +20,7 @@ export const styles = StyleSheet.create({
   tableHeader: {
     flexDirection: 'row',
     backgroundColor: '#f1f1f1',
-    padding: 10,
     width: '100%',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
   },
   tableRow: {
     flexDirection: 'row',

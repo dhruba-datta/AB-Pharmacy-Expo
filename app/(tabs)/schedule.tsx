@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native';
 import Papa from 'papaparse';
-import { styles } from '@/styles/schedule';
+import { styles } from '@/styles/schedule'; // Updated import path
 
 const SCHEDULE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYGe49CMfHtSVXwpeytgh5FvCT-06ec539uGMx25oWgEzZo1RvBZaGgZpPTDDW2w/pub?gid=927279133&output=csv';
 
