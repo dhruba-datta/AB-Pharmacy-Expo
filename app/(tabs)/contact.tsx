@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 28,
     fontWeight: 'bold',
+    color: '#186F65',
   },
   contactInfo: {
     fontSize: 18,
