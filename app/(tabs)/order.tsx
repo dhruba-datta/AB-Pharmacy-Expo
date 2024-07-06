@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Pressable, Image, TextInput, Modal, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, FlatList, Pressable, Image, TextInput, Modal, TouchableOpacity, Alert } from 'react-native';
 import { useCart } from '@/app/context/CartContext';
 import { Picker } from '@react-native-picker/picker';
-import { styles } from '@/styles/order';
 import * as Linking from 'expo-linking';
+import { styles } from '@/styles/order';  // Updated import path
 
 type Product = {
   'Brand Name': string;
@@ -27,12 +27,16 @@ export default function Order() {
 
   const renderItem = ({ item }: { item: CartItem }) => (
     <View style={styles.cartItem}>
-      <Text style={styles.cartItemText}>{item['Brand Name']}</Text>
-      <Text style={styles.cartItemQuantity}>Qty: {item.quantity}</Text>
-      <Text style={styles.cartItemPrice}>৳{item.Price}</Text>
-      <Pressable onPress={() => removeAllFromCart(item['Brand Name'])} style={styles.removeButton}>
-        <Image source={require('@/assets/icons/trash.png')} style={styles.trashIcon} />
-      </Pressable>
+      <View style={styles.cartItemTextContainer}>
+        <Text style={styles.cartItemText}>{item['Brand Name']}</Text>
+        <Text style={styles.cartItemQuantity}>Qty: {item.quantity} x ৳{item.Price}</Text>
+      </View>
+      <View style={styles.cartItemPriceContainer}>
+        <Text style={styles.cartItemTotalPrice}>৳{(item.Price * item.quantity).toFixed(2)}</Text>
+        <Pressable onPress={() => removeAllFromCart(item['Brand Name'])} style={styles.removeButton}>
+          <Image source={require('@/assets/icons/trash.png')} style={styles.trashIcon} />
+        </Pressable>
+      </View>
     </View>
   );
 
@@ -46,9 +50,9 @@ export default function Order() {
       return;
     }
 
-    const orderDetails = cart.map(item => `Brand: ${item['Brand Name']}, Qty: ${item.quantity}, Price: ৳${item.Price}`).join('\n');
+    const orderDetails = cart.map(item => `${item['Brand Name']} - ${item.quantity}`).join('\n');
     const totalPrice = cart.reduce((total, item) => total + item.Price * item.quantity, 0).toFixed(2);
-    const message = `Shop Name: ${shopName}\nMarket Name: ${marketName}\n\nOrder Details:\n${orderDetails}\n\nTotal Price: ৳${totalPrice}`;
+    const message = `Shop: ${shopName}\nMarket: ${marketName}\n\nOrder:\n${orderDetails}\n\nTotal Price: ৳${totalPrice}`;
 
     const url = `https://wa.me/8801912555765?text=${encodeURIComponent(message)}`;
     Linking.openURL(url);

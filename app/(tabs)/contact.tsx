@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
       <TouchableWithoutFeedback onPress={() => handlePress('tel:+8801912555765')}>
         <View style={styles.button}>
           <Image source={require('@/assets/icons/phone.png')} style={styles.icon} />
-          <Text style={styles.buttonText}>Call Us</Text>
+          <Text style={styles.buttonText}>Call us</Text>
         </View>
       </TouchableWithoutFeedback>
 

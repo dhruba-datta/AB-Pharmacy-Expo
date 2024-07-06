@@ -73,7 +73,7 @@ const Schedule = () => {
       <Text style={styles.title}>Schedule</Text>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.tableHeader}>
-          <Text style={[styles.tableCell, styles.headerCell]}>Market Name</Text>
+          <Text style={[styles.tableCell, styles.headerCell]}>Market</Text>
           <Text style={[styles.tableCell, styles.headerCell]}>Order</Text>
           <Text style={[styles.tableCell, styles.headerCell]}>Delivery</Text>
         </View>

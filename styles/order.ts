@@ -1,4 +1,3 @@
-// styles/order.js
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -16,30 +15,36 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  cartItemTextContainer: {
+    flex: 1,
+  },
   cartItemText: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
-    flex: 1,
   },
   cartItemQuantity: {
     fontSize: 16,
     color: '#555',
-    marginLeft: 10,
   },
-  cartItemPrice: {
+  cartItemPriceContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  cartItemTotalPrice: {
     fontSize: 16,
     color: 'green',
     fontWeight: 'bold',
-    marginLeft: 10,
+    marginRight: 10,
   },
   removeButton: {
     paddingVertical: 5,
     paddingHorizontal: 10,
   },
-  removeButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+  trashIcon: {
+    width: 24,
+    height: 24,
+    tintColor: 'red',
   },
   emptyText: {
     textAlign: 'center',
@@ -78,11 +83,6 @@ export const styles = StyleSheet.create({
   },
   disabledOrderButton: {
     backgroundColor: '#aaa',
-  },
-  trashIcon: {
-    width: 24,
-    height: 24,
-    tintColor: 'red',
   },
   modalContainer: {
     flex: 1,
