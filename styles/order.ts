@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
   trashIcon: {
     width: 24,
     height: 24,
-    tintColor: 'red',
+    tintColor: '#FF204E',
   },
   emptyText: {
     textAlign: 'center',

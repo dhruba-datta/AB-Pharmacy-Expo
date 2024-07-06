@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     right: -6,
     top: -10,
-    backgroundColor: 'red',
+    backgroundColor: '#FF204E',
     borderRadius: 8,
     width: 15,
     height: 15,
