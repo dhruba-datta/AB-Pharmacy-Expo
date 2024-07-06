@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8f8f8',
     padding: 10,
+    paddingBottom: 2,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -12,28 +13,30 @@ export const styles = StyleSheet.create({
     backgroundColor: '#e9e9e9',
     borderRadius: 10,
     paddingHorizontal: 10,
-    marginVertical: 5, // Reduced margin
-    height: 50, // Set a fixed height for the search box
+    marginVertical: 5,
+    height: 50,
   },
   searchIcon: {
     width: 20,
     height: 20,
-    tintColor: '#888', // Adjust the color as needed
   },
   searchBarInput: {
     flex: 1,
     marginLeft: 10,
     height: 40,
+    fontSize: 16,
+    fontFamily: 'Poppins-Regular',
+    paddingTop: 2,
   },
   filterContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#e9e9e9', // Background color for filter container
+    backgroundColor: '#e9e9e9',
     padding: 10,
     borderRadius: 10,
-    marginVertical: 5, // Reduced margin
-    height: 50, // Set the same height as the search box
+    marginVertical: 5,
+    height: 50,
     marginBottom: 15,
   },
   pickerContainer: {
@@ -45,7 +48,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     height: 50,
     width: '100%',
-    marginHorizontal: 5, // Margin between pickers
+    marginHorizontal: 5,
   },
   resetButton: {
     backgroundColor: 'transparent',
@@ -56,7 +59,7 @@ export const styles = StyleSheet.create({
   resetIcon: {
     width: 25,
     height: 25,
-    tintColor: '#006769', // Same color as the button background color
+    tintColor: '#006769',
   },
   card: {
     flexDirection: 'row',
@@ -78,44 +81,50 @@ export const styles = StyleSheet.create({
   cardContent: {
     flex: 1,
     padding: 10,
+    paddingBottom: 0,
   },
-    title: {
+  title: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
   },
   description: {
     fontSize: 14,
     color: '#666',
+    fontFamily: 'Poppins-Regular',
   },
   priceButtonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 6,
   },
   price: {
     fontSize: 16,
     color: '#006769',
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
   },
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 120, // Adjust the width as needed
+    width: 120,
   },
   addToCartButton: {
+    flexDirection: 'row',  // Add this line to ensure icon and text are in one line
     backgroundColor: '#006769',
     paddingVertical: 8,
     paddingHorizontal: 20,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 35, // Set a fixed height for the buttons
+    height: 35,
   },
   addToCartText: {
     color: 'white',
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
   },
   outOfStockButton: {
     backgroundColor: 'red',
@@ -126,27 +135,44 @@ export const styles = StyleSheet.create({
   },
   quantityButtonContainer: {
     backgroundColor: '#006769',
-    paddingVertical: 8,
+    paddingVertical: 2,
     paddingHorizontal: 12,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 35, // Ensures consistent width for quantity buttons
-    height: 35, // Make the height same as add to cart button
+    width: 35,
+    height: 35,
   },
   quantityButton: {
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
+    fontFamily: 'Poppins-Bold',
   },
   quantityText: {
     marginHorizontal: 14,
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
+    width: 24,
+    textAlign: 'center',
+  },
+  noResults: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: '#666',
+    fontFamily: 'Poppins-Regular',
   },
   loadingOverlay: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  buttonIcon: {
+    width: 20,
+    height: 20,
+    marginRight: 5,
+    tintColor: 'white',
   },
 });

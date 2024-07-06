@@ -4,6 +4,8 @@ import Papa from 'papaparse';
 import { useCart, CartItem } from '../context/CartContext';
 import { useNavigation, useRoute, useIsFocused, RouteProp, CompositeNavigationProp, NavigationProp } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { styles } from '@/styles/product';
 
 type Product = {
@@ -26,6 +28,16 @@ type ProductScreenNavigationProp = CompositeNavigationProp<
   NavigationProp<RootStackParamList, 'Product'>
 >;
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-ExtraBold': require('@/assets/fonts/Poppins-ExtraBold.ttf'),
+  });
+};
+
+SplashScreen.preventAutoHideAsync();
+
 const ProductScreen = () => {
   const [data, setData] = useState<Product[]>([]);
   const [filteredData, setFilteredData] = useState<Product[]>([]);
@@ -34,6 +46,7 @@ const ProductScreen = () => {
   const [search, setSearch] = useState('');
   const [selectedFilterType, setSelectedFilterType] = useState<string>('Category');
   const [selectedCategoryOrCompany, setSelectedCategoryOrCompany] = useState<string>('All');
+  const [fontsLoaded, setFontsLoaded] = useState(false);
   const defaultFilterType = useRef<string>('Category');
   const defaultCategoryOrCompany = useRef<string>('All');
   const { addToCart, removeFromCart, cart } = useCart();
@@ -41,6 +54,20 @@ const ProductScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, 'Product'>>();
   const { category, company } = route.params || {};
   const isFocused = useIsFocused();
+
+  useEffect(() => {
+    const loadFonts = async () => {
+      try {
+        await fetchFonts();
+        setFontsLoaded(true);
+        SplashScreen.hideAsync();
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+
+    loadFonts();
+  }, []);
 
   useEffect(() => {
     if (isFocused) {
@@ -148,11 +175,13 @@ const ProductScreen = () => {
                   </View>
                 ) : (
                   <Pressable style={styles.addToCartButton} onPress={() => addToCart({ ...item, quantity: 1 })}>
+                    <Image source={require('@/assets/icons/add.png')} style={styles.buttonIcon} />
                     <Text style={styles.addToCartText}>Add to Cart</Text>
                   </Pressable>
                 )
               ) : (
                 <Pressable style={[styles.addToCartButton, styles.outOfStockButton]} disabled>
+                  <Image source={require('@/assets/icons/out.png')} style={styles.buttonIcon} />
                   <Text style={styles.addToCartText}>Out of Stock</Text>
                 </Pressable>
               )}
@@ -176,6 +205,10 @@ const ProductScreen = () => {
     fetchData();
   };
 
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="large" color="#186F65" />;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
@@ -197,13 +230,15 @@ const ProductScreen = () => {
             <Picker.Item label="Category" value="Category" />
             <Picker.Item label="Company" value="Company" />
           </Picker>
+        </View>
+        <View style={styles.pickerContainer}>
           <Picker
             selectedValue={selectedCategoryOrCompany}
             onValueChange={handleCategoryOrCompanyChange}
             style={styles.picker}
           >
-            {getOptions().map(option => (
-              <Picker.Item key={option} label={option} value={option} />
+            {getOptions().map((option, index) => (
+              <Picker.Item key={index} label={option} value={option} />
             ))}
           </Picker>
         </View>
@@ -212,21 +247,16 @@ const ProductScreen = () => {
         </Pressable>
       </View>
       {loading ? (
-        <View style={styles.loadingOverlay}>
         <ActivityIndicator size="large" color="#186F65" />
-      </View>
-      ) : (
+      ) : filteredData.length > 0 ? (
         <FlatList
           data={filteredData}
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-            />
-          }
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         />
+      ) : (
+        <Text style={styles.noResults}>No products found.</Text>
       )}
     </View>
   );
