@@ -170,7 +170,9 @@ const Search: React.FC = () => {
         />
       </View>
       {loading ? (
-        <ActivityIndicator size="large" color="#186F65" />
+        <View style={styles.loadingOverlay}>
+          <ActivityIndicator size="large" color="#186F65" />
+        </View>
       ) : (
         filteredData.length === 0 ? (
           <Text style={styles.noProductsText}>No products found</Text>

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "pharma",
-    "slug": "pharma",
+    "name": "AB Pharmacy",
+    "slug": "ab.pharmacy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

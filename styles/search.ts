@@ -26,6 +26,11 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Poppins-Regular',
   },
+  loadingOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   productCard: {
     backgroundColor: '#fff',
     padding: 10,
