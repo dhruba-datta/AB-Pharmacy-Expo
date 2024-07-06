@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Modal, TouchableWithoutFeedback, Image } from 'react-native';
 import Papa from 'papaparse';
+import * as Font from 'expo-font';
 import { styles } from '@/styles/schedule'; // Updated import path
 
 const SCHEDULE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQYGe49CMfHtSVXwpeytgh5FvCT-06ec539uGMx25oWgEzZo1RvBZaGgZpPTDDW2w/pub?gid=927279133&output=csv';
@@ -18,6 +19,20 @@ const Schedule = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedDescription, setSelectedDescription] = useState('');
   const [selectedMarketName, setSelectedMarketName] = useState('');
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadFonts = async () => {
+      await Font.loadAsync({
+        'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-ExtraBold': require('@/assets/fonts/Poppins-ExtraBold.ttf'),
+      });
+      setFontsLoaded(true);
+    };
+
+    loadFonts();
+  }, []);
 
   useEffect(() => {
     fetch(SCHEDULE_CSV_URL)
@@ -55,28 +70,32 @@ const Schedule = () => {
 
     return (
       <View key={index} style={styles.tableRow}>
-        <TouchableOpacity onPress={() => handleMarketNamePress(item.marketName, item.description)} style={styles.tableCell}>
-          <Text>{item.marketName}</Text>
+        <TouchableOpacity onPress={() => handleMarketNamePress(item.marketName, item.description)} style={[styles.tableCell, styles.marketNameCell]}>
+          <Text style={styles.marketNameText}>{item.marketName}</Text>
         </TouchableOpacity>
-        <Text style={[styles.tableCell, isOrderMerged ? styles.mergedCell : null]}>
+        <Text style={[styles.tableCell, styles.orderCell, isOrderMerged ? styles.mergedCell : null]}>
           {isOrderMerged && item.order}
         </Text>
-        <Text style={[styles.tableCell, isDeliveryMerged ? styles.mergedCell : null]}>
+        <Text style={[styles.tableCell, styles.deliveryCell, isDeliveryMerged ? styles.mergedCell : null]}>
           {isDeliveryMerged && item.delivery}
         </Text>
       </View>
     );
   };
 
+  if (!fontsLoaded) {
+    return null; // or render a custom loading component
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Schedule</Text>
+      <Text style={styles.title}>Order & Delivery</Text>
+      <View style={styles.tableHeader}>
+        <Text style={[styles.tableCell, styles.headerCell, styles.marketNameCell]}>Market Name</Text>
+        <Text style={[styles.tableCell, styles.headerCell, styles.orderCell]}>Order</Text>
+        <Text style={[styles.tableCell, styles.headerCell, styles.deliveryCell]}>Delivery</Text>
+      </View>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.tableHeader}>
-          <Text style={[styles.tableCell, styles.headerCell]}>Market</Text>
-          <Text style={[styles.tableCell, styles.headerCell]}>Order</Text>
-          <Text style={[styles.tableCell, styles.headerCell]}>Delivery</Text>
-        </View>
         {data.map((item, index) => renderMergedRow(index, item))}
       </ScrollView>
 

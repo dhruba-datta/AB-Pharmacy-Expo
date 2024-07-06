@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const screenHeight = Dimensions.get('window').height;
-const modalHeight = screenHeight * 0.3; // Assuming maxHeight: '50%'
+const modalHeight = screenHeight * 0.3;
 const marginTop = (screenHeight - modalHeight) / 2;
 
 export const styles = StyleSheet.create({
@@ -10,13 +10,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    padding: 20,
+    padding: 15,
+    paddingBottom: 2,
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontFamily: 'Poppins-ExtraBold',
     color: '#186F65',
+    marginBottom: 10,
   },
   scrollContainer: {
     alignItems: 'center',
@@ -32,23 +33,36 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   tableCell: {
-    flex: 1,
     padding: 10,
     borderWidth: 1,
     borderColor: '#ccc',
     textAlign: 'center',
+  },
+  marketNameCell: {
+    flex: 2,
+  },
+  orderCell: {
+    flex: 1,
+  },
+  deliveryCell: {
+    flex: 1,
   },
   headerCell: {
-    fontWeight: 'bold',
     fontSize: 16,
     color: '#186F65',
+    fontFamily: 'Poppins-Bold',
+    textAlign: 'center',
+    paddingBottom: 5,
   },
   mergedCell: {
-    flex: 1,
     padding: 10,
     borderWidth: 1,
     borderColor: '#ccc',
     textAlign: 'center',
+  },
+  marketNameText: {
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
   },
   modalOverlay: {
     position: 'absolute',
@@ -72,13 +86,14 @@ export const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
     marginBottom: 15,
     marginTop: 15,
     color: '#186F65',
   },
   modalText: {
     fontSize: 16,
+    fontFamily: 'Poppins-Regular',
     marginBottom: 20,
     textAlign: 'center',
   },
