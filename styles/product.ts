@@ -66,7 +66,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginBottom: 15,
     borderRadius: 5,
-    elevation: 3,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 1 },
@@ -109,7 +108,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 120,
+    width: 119,
   },
   addToCartButton: {
     flexDirection: 'row',  // Add this line to ensure icon and text are in one line
@@ -123,8 +122,7 @@ export const styles = StyleSheet.create({
   },
   addToCartText: {
     color: 'white',
-    fontWeight: 'bold',
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Poppins-Medium',
   },
   outOfStockButton: {
     backgroundColor: '#dc3545',
@@ -154,7 +152,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'Poppins-Bold',
-    width: 24,
+    width: 30,
     textAlign: 'center',
   },
   noResults: {

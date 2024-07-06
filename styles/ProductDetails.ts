@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
   addToCartText: {
     color: '#ffffff',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: 'Poppins-Bold',
   },
   outOfStockButton: {
@@ -94,8 +94,8 @@ export const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
   },
   buttonIcon: {
-    width: 20,
-    height: 20,
+    width: 22,
+    height: 22,
     marginRight: 5,
     tintColor: '#fff',
   },

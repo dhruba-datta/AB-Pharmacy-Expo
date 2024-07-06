@@ -3,9 +3,10 @@ import { StyleSheet, Text, View, FlatList, ScrollView, Pressable, Image, Activit
 import Papa, { ParseResult } from 'papaparse';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { useCart } from '../context/CartContext';
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { styles } from '@/styles/index';
 import { RootParamList } from '@/navigation';
-
 
 interface Product {
   'Brand Name': string;
@@ -15,15 +16,45 @@ interface Product {
   'Stock': string;
 }
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-Medium': require('@/assets/fonts/Poppins-Medium.ttf'),
+  });
+};
+
+SplashScreen.preventAutoHideAsync();
+
 const Home: React.FC = () => {
   const [data, setData] = useState<Product[]>([]);
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [search, setSearch] = useState('');
+  const [fontsLoaded, setFontsLoaded] = useState(false);
   const navigation = useNavigation<NavigationProp<RootParamList>>();
   const scrollViewRef = useRef<ScrollView>(null);
   const { addToCart, removeFromCart, cart } = useCart();
+
+  useEffect(() => {
+    const loadFonts = async () => {
+      try {
+        await fetchFonts();
+        setFontsLoaded(true);
+      } catch (error) {
+        console.warn(error);
+      } finally {
+        SplashScreen.hideAsync();
+      }
+    };
+
+    loadFonts();
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = () => {
     setLoading(true);
@@ -48,10 +79,6 @@ const Home: React.FC = () => {
       });
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const groupByCategory = (products: Product[]) => {
     return products.reduce((groups, product) => {
       const category = product['Category'] || 'Uncategorized';
@@ -64,7 +91,7 @@ const Home: React.FC = () => {
   };
 
   const groupByCompany = (products: Product[]) => {
-    return products.reduce((groups, product) => {
+    const groupedProducts = products.reduce((groups, product) => {
       const company = product['Company'] || '';
       if (company) {
         if (!groups[company]) {
@@ -73,6 +100,15 @@ const Home: React.FC = () => {
         groups[company].push(product);
       }
       return groups;
+    }, {} as Record<string, Product[]>);
+
+    const sortedCompanies = Object.keys(groupedProducts).sort((a, b) =>
+      a.localeCompare(b)
+    );
+
+    return sortedCompanies.reduce((sortedGroups, company) => {
+      sortedGroups[company] = groupedProducts[company];
+      return sortedGroups;
     }, {} as Record<string, Product[]>);
   };
 
@@ -112,7 +148,7 @@ const Home: React.FC = () => {
 
   const renderProduct = (item: Product) => {
     const cartItem = cart.find(cartItem => cartItem['Brand Name'] === item['Brand Name']);
-
+  
     return (
       <View style={styles.productCard}>
         <Pressable
@@ -120,10 +156,10 @@ const Home: React.FC = () => {
           onPress={() => navigation.navigate('ProductDetails', { product: item })}
         >
           <Image
-            source={{ uri: 'https://via.placeholder.com/150' }} // Placeholder image, replace with your image URL
+            source={require('@/assets/images/product/default.png')}
             style={styles.productImage}
           />
-          <View style={styles.productDetails}>
+          <View>
             <Text style={styles.productTitle} numberOfLines={2}>{item['Brand Name']}</Text>
           </View>
         </Pressable>
@@ -142,11 +178,13 @@ const Home: React.FC = () => {
               </View>
             ) : (
               <Pressable style={styles.addToCartButton} onPress={() => addToCart({ ...item, quantity: 1 })}>
+                <Image source={require('@/assets/icons/add.png')} style={styles.buttonIcon} />
                 <Text style={styles.addToCartText}>Add to Cart</Text>
               </Pressable>
             )
           ) : (
             <Pressable style={[styles.addToCartButton, styles.outOfStockButton]} disabled>
+              <Image source={require('@/assets/icons/out.png')} style={styles.buttonIcon} />
               <Text style={styles.addToCartText}>Out of Stock</Text>
             </Pressable>
           )}
@@ -154,6 +192,7 @@ const Home: React.FC = () => {
       </View>
     );
   };
+  
 
   const renderCategoryGrid = () => (
     <View style={styles.categoryGrid}>
@@ -179,6 +218,10 @@ const Home: React.FC = () => {
     const yOffset = categoryNames.indexOf(category) * 300; // Approximate offset, adjust as needed
     scrollViewRef.current?.scrollTo({ y: yOffset, animated: true });
   };
+
+  if (!fontsLoaded) {
+    return null; // or render a custom loading component
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>

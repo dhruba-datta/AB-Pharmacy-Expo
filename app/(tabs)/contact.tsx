@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 28,
-    fontFamily: 'Poppins-ExtraBold',
+    fontFamily: 'Poppins-Bold',
     color: '#186F65',
   },
   contactInfo: {

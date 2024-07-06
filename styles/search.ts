@@ -63,15 +63,14 @@ export const styles = StyleSheet.create({
     flexDirection: 'row', // Add this line
     alignItems: 'center', // Add this line
     backgroundColor: '#186F65',
-    paddingVertical: 8,
-    paddingHorizontal: 15,
+    paddingVertical: 7,
+    paddingHorizontal: 10,
     borderRadius: 5,
   },
   addToCartText: {
     color: '#fff',
     fontSize: 14,
-    fontWeight: 'bold',
-    fontFamily: 'Poppins-Bold', // Ensure this matches the loaded font name
+    fontFamily: 'Poppins-Medium', // Ensure this matches the loaded font name
     textAlign: 'center',
   },
   outOfStockButton: {

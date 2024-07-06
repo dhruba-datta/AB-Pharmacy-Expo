@@ -3,172 +3,199 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
-    padding: 2,
-    paddingBottom: 2,
-
+    backgroundColor: '#f8f8f8',
   },
   container: {
-    flex: 1,
-    padding: 10,
-  },
-  searchBarContainer: {
-    backgroundColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderTopColor: 'transparent',
-  },
-  searchBarInput: {
-    backgroundColor: '#e9e9e9',
-    borderRadius: 10,
+    paddingHorizontal: 16,
   },
   loadingOverlay: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  shopByCategoriesHeader: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginVertical: 10,
-    color: '#186F65',
-  },
-  shopByCompaniesHeader: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginVertical: 10,
-    color: '#186F65',
-  },
   categorySection: {
-    marginBottom: 20,
+    marginBottom: 25,
   },
   categoryHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 12,
   },
   categoryTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
-    color: '#186F65',
-    marginTop: 20,
+    fontFamily: 'Poppins-Bold',
+    color: '#333',
   },
   showAll: {
     fontSize: 14,
+    fontFamily: 'Poppins-Bold',
     color: '#186F65',
   },
   flatListContentContainer: {
-    paddingHorizontal: 10,
+    paddingLeft: 1,
   },
   productCard: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 10,
-    marginRight: 10,
     width: 150,
-    height: 250,
-    justifyContent: 'space-between',
-  },
-  productInfo: {
-    alignItems: 'center',
+    marginRight: 16,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    overflow: 'hidden',
+    backgroundColor: '#fff',
   },
   productImage: {
-    width: 100,
+    width: '100%',
     height: 100,
-    borderRadius: 10,
-    marginBottom: 10,
+    resizeMode: 'cover',
   },
-  productDetails: {
+  productInfo: {
+    flex: 1,
     alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 12,
+    paddingBottom: 0,
+    
   },
   productTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontFamily: 'Poppins-Medium',
+    color: '#333',
     textAlign: 'center',
-    height: 40, // Adjust height to fit one or two lines
+    marginBottom: 8,
   },
   buttonContainer: {
-    alignItems: 'center',
+    padding: 12,
+    borderTopWidth: 1,
+    borderColor: '#ddd',
+    backgroundColor: '#fff',
   },
   productPrice: {
-    fontSize: 14,
+    fontSize: 16,
+    fontFamily: 'Poppins-Bold',
     color: '#186F65',
-    marginBottom: 5,
+    marginBottom: 8,
+    textAlign: 'center',
   },
   addToCartButton: {
+    flexDirection: 'row', // Add this line
+    alignItems: 'center', // Add this line
     backgroundColor: '#186F65',
-    paddingVertical: 8,
-    paddingHorizontal: 15,
+    paddingVertical: 7,
+    paddingHorizontal: 10,
     borderRadius: 5,
   },
   addToCartText: {
     color: '#fff',
     fontSize: 14,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Medium', // Ensure this matches the loaded font name
     textAlign: 'center',
   },
   outOfStockButton: {
-    backgroundColor: 'red',
-    height: 35,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#dc3545', // Red color for out of stock button
   },
   quantitySelector: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 90,
-    height: 34,
+    width: 118,
   },
-  quantityButtonContainer: {
+ quantityButtonContainer: {
     backgroundColor: '#186F65',
+    paddingVertical: 2,
+    paddingHorizontal: 12,
     borderRadius: 5,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 35,
+    height: 35,
   },
   quantityButton: {
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
   },
   quantityText: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
   },
   categoryGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    marginBottom: 24,
   },
   categoryCell: {
+    width: '48%',
     backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 10,
-    margin: 5,
-    width: '45%',
+    borderRadius: 8,
+    paddingVertical: 12,
     alignItems: 'center',
+    marginBottom: 16,
   },
   categoryCellText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#186F65',
+    fontFamily: 'Poppins-Medium',
+    color: '#333',
   },
+  // companyGrid: {
+  //   flexDirection: 'row',
+  //   flexWrap: 'wrap',
+  //   justifyContent: 'space-between',
+  //   marginBottom: 24,
+  // },
+  // companyCell: {
+  //   width: '48%',
+  //   backgroundColor: '#f8f8f8',
+  //   borderRadius: 8,
+  //   paddingVertical: 16,
+  //   alignItems: 'center',
+  //   marginBottom: 16,
+  // },
+  // companyCellText: {
+  //   fontSize: 16,
+  //   fontFamily: 'Poppins-Medium',
+  //   color: '#333',
+  // },
+
   companyGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  companyCell: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 10,
-    margin: 5,
-    width: '45%',
-    alignItems: 'center',
-  },
-  companyCellText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+     flexDirection: 'column',  // Change to column
+     marginBottom: 24,
+   },
+
+   companyCell: {
+     backgroundColor: '#fff',
+     borderRadius: 8,
+     paddingVertical: 16,
+     alignItems: 'center',
+     marginBottom: 16,
+   },
+
+   companyCellText: {
+     fontSize: 16,
+     fontFamily: 'Poppins-Medium',
+     color: '#333',
+   },
+
+
+  shopByCategoriesHeader: {
+    fontSize: 24,
+    fontFamily: 'Poppins-Bold',
     color: '#186F65',
+    marginBottom: 16,
+    marginTop: 20,
+  },
+  shopByCompaniesHeader: {
+    fontSize: 24,
+    fontFamily: 'Poppins-Bold',
+    color: '#186F65',
+    marginBottom: 16,
+  },
+  buttonIcon: {
+    width: 18, // Set the width of the icon
+    height: 18, // Set the height of the icon
+    marginRight: 2, // Add some margin to the right of the icon
+    tintColor: '#fff',
   },
 });
