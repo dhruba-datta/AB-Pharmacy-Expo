@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, Pressable, Image, TextInput, Modal, TouchableOpacity, Alert, TouchableWithoutFeedback } from 'react-native';
 import { useCart } from '@/app/context/CartContext';
 import { Picker } from '@react-native-picker/picker';
 import * as Linking from 'expo-linking';
-import { styles } from '@/styles/order';
+import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
+import { styles } from '@/styles/order';
 
 type Product = {
   'Brand Name': string;
@@ -29,6 +29,8 @@ const fetchFonts = () => {
   });
 };
 
+SplashScreen.preventAutoHideAsync();
+
 export default function Order() {
   const { cart, removeAllFromCart } = useCart() as unknown as { cart: CartItem[], removeAllFromCart: (brandName: string) => void };
   const [modalVisible, setModalVisible] = useState(false);
@@ -36,14 +38,23 @@ export default function Order() {
   const [marketName, setMarketName] = useState('');
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
+  useEffect(() => {
+    const loadFonts = async () => {
+      try {
+        await fetchFonts();
+        setFontsLoaded(true);
+      } catch (error) {
+        console.warn(error);
+      } finally {
+        SplashScreen.hideAsync();
+      }
+    };
+
+    loadFonts();
+  }, []);
+
   if (!fontsLoaded) {
-    return (
-      <AppLoading
-        startAsync={fetchFonts}
-        onFinish={() => setFontsLoaded(true)}
-        onError={console.warn}
-      />
-    );
+    return null; // or render a custom loading component
   }
 
   const renderItem = ({ item }: { item: CartItem }) => (

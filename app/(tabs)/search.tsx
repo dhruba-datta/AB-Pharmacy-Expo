@@ -3,6 +3,8 @@ import { View, Text, FlatList, Pressable, Image, ActivityIndicator, RefreshContr
 import Papa, { ParseResult } from 'papaparse';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { useCart, CartItem } from '../context/CartContext';
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { styles } from '@/styles/search';
 
 type Product = {
@@ -18,12 +20,23 @@ type RootStackParamList = {
   // other routes...
 };
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-ExtraBold': require('@/assets/fonts/Poppins-ExtraBold.ttf'),
+  });
+};
+
+SplashScreen.preventAutoHideAsync();
+
 const Search: React.FC = () => {
   const [data, setData] = useState<Product[]>([]);
   const [filteredData, setFilteredData] = useState<Product[]>([]);
   const [search, setSearch] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const searchInputRef = useRef<any>(null);
   const { addToCart, removeFromCart, cart } = useCart();
@@ -49,6 +62,20 @@ const Search: React.FC = () => {
         setRefreshing(false);
       });
   };
+
+  useEffect(() => {
+    const loadFonts = async () => {
+      try {
+        await fetchFonts();
+        setFontsLoaded(true);
+        SplashScreen.hideAsync();
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+
+    loadFonts();
+  }, []);
 
   useEffect(() => {
     fetchData();
@@ -106,11 +133,13 @@ const Search: React.FC = () => {
               </View>
             ) : (
               <Pressable style={styles.addToCartButton} onPress={() => addToCart({ ...item, quantity: 1 })}>
+                <Image source={require('@/assets/icons/add.png')} style={styles.buttonIcon} />
                 <Text style={styles.addToCartText}>Add to Cart</Text>
               </Pressable>
             )
           ) : (
             <Pressable style={[styles.addToCartButton, styles.outOfStockButton]} disabled>
+              <Image source={require('@/assets/icons/out.png')} style={styles.buttonIcon} />
               <Text style={styles.addToCartText}>Out of Stock</Text>
             </Pressable>
           )}
@@ -123,6 +152,10 @@ const Search: React.FC = () => {
     setRefreshing(true);
     fetchData();
   };
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="large" color="#186F65" />;
+  }
 
   return (
     <View style={styles.container}>

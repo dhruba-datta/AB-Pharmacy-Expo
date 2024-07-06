@@ -1,4 +1,3 @@
-// styles/search.js
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -24,6 +23,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     fontSize: 16,
+    fontFamily: 'Poppins-Regular',
   },
   productCard: {
     backgroundColor: '#fff',
@@ -47,17 +47,20 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   productTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontFamily: 'Poppins-Bold', // Ensure this matches the loaded font name
   },
   productPrice: {
     fontSize: 14,
     color: '#333',
+    fontFamily: 'Poppins-Regular', // Ensure this matches the loaded font name
   },
   buttonContainer: {
-    width: 110, // Set a fixed width for the button container
+    width: 120, // Set a fixed width for the button container
   },
   addToCartButton: {
+    flexDirection: 'row', // Add this line
+    alignItems: 'center', // Add this line
     backgroundColor: '#186F65',
     paddingVertical: 8,
     paddingHorizontal: 15,
@@ -67,6 +70,7 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold', // Ensure this matches the loaded font name
     textAlign: 'center',
   },
   outOfStockButton: {
@@ -77,6 +81,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 16,
     color: '#555',
+    fontFamily: 'Poppins-Regular', // Ensure this matches the loaded font name
   },
   quantitySelector: {
     flexDirection: 'row',
@@ -94,9 +99,18 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
   },
   quantityText: {
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
+  },
+  buttonIcon: {
+    width: 20, // Set the width of the icon
+    height: 20, // Set the height of the icon
+    marginRight: 2, // Add some margin to the right of the icon
+    tintColor: '#fff',
+
   },
 });
