@@ -113,7 +113,7 @@ export const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 20,
     fontFamily: 'Poppins-Bold',
-    marginBottom: 20,
+    marginBottom: 10,
     textAlign: 'center',
     color: '#186F65',
   },
@@ -157,8 +157,8 @@ export const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    top: 10,
-    right: 10,
+    top: 3,
+    right: 3,
     padding: 5,
     borderRadius: 50,
   },

@@ -1,8 +1,10 @@
-import React from 'react';
-import { Text, View, Image, Pressable } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View, Image, Pressable, ActivityIndicator } from 'react-native';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { useCart } from '../context/CartContext';
 import { styles } from '@/styles/ProductDetails';
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
 // Define a type for the product
 type Product = {
@@ -27,7 +29,18 @@ type RouteParams = {
   };
 };
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-ExtraBold': require('@/assets/fonts/Poppins-ExtraBold.ttf'),
+  });
+};
+
+SplashScreen.preventAutoHideAsync();
+
 const ProductDetails = () => {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
   const route = useRoute<RouteProp<RouteParams, 'params'>>();
   const { product } = route.params;
   const { addToCart, removeFromCart, cart } = useCart();
@@ -38,10 +51,28 @@ const ProductDetails = () => {
     addToCart(newCartItem);
   };
 
+  useEffect(() => {
+    const loadFonts = async () => {
+      try {
+        await fetchFonts();
+        setFontsLoaded(true);
+        SplashScreen.hideAsync();
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+
+    loadFonts();
+  }, []);
+
+  if (!fontsLoaded) {
+    return <ActivityIndicator size="large" color="#186F65" />;
+  }
+
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: 'https://via.placeholder.com/300' }} // Placeholder image, replace with your image URL
+        source={require('@/assets/images/product/default.png')}
         style={styles.productImage}
       />
       <Text style={styles.title}>{product['Brand Name']}</Text>
@@ -50,8 +81,8 @@ const ProductDetails = () => {
         <Text style={styles.infoText}>Generic: {product['Generic']}</Text>
         <Text style={styles.infoText}>Company: {product['Company']}</Text>
         <Text style={styles.infoText}>Category: {product['Category']}</Text>
-        <Text style={styles.infoText}>Price: ৳{product['Price']}</Text>
       </View>
+        <Text style={styles.price}>Price: ৳{product['Price']}</Text>
 
       {product['Stock'] === 'Y' ? (
         cartItem ? (
@@ -66,11 +97,13 @@ const ProductDetails = () => {
           </View>
         ) : (
           <Pressable style={styles.addToCartButton} onPress={handleAddToCart}>
+            <Image source={require('@/assets/icons/add.png')} style={styles.buttonIcon} />
             <Text style={styles.addToCartText}>Add to Cart</Text>
           </Pressable>
         )
       ) : (
         <Pressable style={[styles.addToCartButton, styles.outOfStockButton]} disabled>
+          <Image source={require('@/assets/icons/out.png')} style={styles.buttonIcon} />
           <Text style={styles.addToCartText}>Out of Stock</Text>
         </Pressable>
       )}

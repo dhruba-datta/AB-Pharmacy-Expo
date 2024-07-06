@@ -106,4 +106,11 @@ export const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
+  // New styles for alternating row colors
+  tableRowEven: {
+    backgroundColor: '#F1FDFF', // White for odd rows
+  },
+  tableRowOdd: {
+    backgroundColor: '#f9f9f9', // Light gray for even rows
+  },
 });

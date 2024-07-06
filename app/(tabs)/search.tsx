@@ -111,7 +111,7 @@ const Search: React.FC = () => {
           onPress={() => navigation.navigate('ProductDetails', { product: item })}
         >
           <Image
-            source={{ uri: 'https://via.placeholder.com/150' }}
+            source={require('@/assets/images/product/default.png')}
             style={styles.productImage}
           />
           <View style={styles.productDetails}>

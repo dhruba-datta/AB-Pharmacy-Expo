@@ -67,9 +67,12 @@ const Schedule = () => {
   const renderMergedRow = (index: number, item: ScheduleData) => {
     const isOrderMerged = item.order !== '';
     const isDeliveryMerged = item.delivery !== '';
-
+  
+    // Determine row style based on index
+    const rowStyle = index % 8 < 4 ? styles.tableRowEven : styles.tableRowOdd;
+  
     return (
-      <View key={index} style={styles.tableRow}>
+      <View key={index} style={[styles.tableRow, rowStyle]}>
         <TouchableOpacity onPress={() => handleMarketNamePress(item.marketName, item.description)} style={[styles.tableCell, styles.marketNameCell]}>
           <Text style={styles.marketNameText}>{item.marketName}</Text>
         </TouchableOpacity>
@@ -82,6 +85,7 @@ const Schedule = () => {
       </View>
     );
   };
+  
 
   if (!fontsLoaded) {
     return null; // or render a custom loading component
