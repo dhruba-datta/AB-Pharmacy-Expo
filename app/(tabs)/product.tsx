@@ -247,7 +247,9 @@ const ProductScreen = () => {
         </Pressable>
       </View>
       {loading ? (
+        <View style={styles.loadingOverlay}>
         <ActivityIndicator size="large" color="#186F65" />
+      </View>
       ) : filteredData.length > 0 ? (
         <FlatList
           data={filteredData}
