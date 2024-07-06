@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: '#f8f8f8',
+    paddingBottom: 2,
   },
   searchBar: {
     flexDirection: 'row',
