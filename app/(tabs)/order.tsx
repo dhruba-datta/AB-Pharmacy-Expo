@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Pressable, Image, TextInput, Modal, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, FlatList, Pressable, Image, TextInput, Modal, TouchableOpacity, Alert, TouchableWithoutFeedback } from 'react-native';
 import { useCart } from '@/app/context/CartContext';
 import { Picker } from '@react-native-picker/picker';
 import * as Linking from 'expo-linking';
-import { styles } from '@/styles/order';  // Updated import path
+import { styles } from '@/styles/order';
 
 type Product = {
   'Brand Name': string;
@@ -83,60 +83,64 @@ export default function Order() {
         </Pressable>
       </View>
       <Modal visible={modalVisible} transparent={true} animationType="slide">
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
-              <Image source={require('@/assets/icons/close.png')} style={styles.closeIcon} />
-            </TouchableOpacity>
-            <Text style={styles.modalTitle}>Order Details</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Shop Name"
-              value={shopName}
-              onChangeText={(text) => {
-                setShopName(text);
-              }}
-            />
-            <View style={styles.pickerContainer}>
-              <Picker
-                selectedValue={marketName}
-                style={styles.picker}
-                onValueChange={(itemValue) => {
-                  setMarketName(itemValue);
-                }}
-              >
-                <Picker.Item label="Select a market" value="" />
-                <Picker.Item label="Banglabazar" value="Banglabazar" />
-                <Picker.Item label="Bhadrashan" value="Bhadrashan" />
-                <Picker.Item label="Boharatola" value="Boharatola" />
-                <Picker.Item label="Bondorkhola" value="Bondorkhola" />
-                <Picker.Item label="Chanderchar" value="Chanderchar" />
-                <Picker.Item label="Choto Kutubpur" value="Choto Kutubpur" />
-                <Picker.Item label="Ganganagar" value="Ganganagar" />
-                <Picker.Item label="Kazirhat" value="Kazirhat" />
-                <Picker.Item label="Majhirghat" value="Majhirghat" />
-                <Picker.Item label="Matborchar" value="Matborchar" />
-                <Picker.Item label="Naodoba" value="Naodoba" />
-                <Picker.Item label="Panchar" value="Panchar" />
-                <Picker.Item label="Shakpur" value="Shakpur" />
-                <Picker.Item label="Sheruail" value="Sheruail" />
-                <Picker.Item label="Shibchar Sadar 1" value="Shibchar Sadar 1" />
-                <Picker.Item label="Shibchar Sadar 2" value="Shibchar Sadar 2" />
-                <Picker.Item label="Shibchar Sadar 3" value="Shibchar Sadar 3" />
-                <Picker.Item label="Shibchar Sadar 4" value="Shibchar Sadar 4" />
-                <Picker.Item label="Surjonagar" value="Surjonagar" />
-                <Picker.Item label="Zajira 1" value="Zajira 1" />
-                <Picker.Item label="Zajira 2" value="Zajira 2" />
-              </Picker>
-            </View>
-            <Pressable
-              style={styles.submitButton}
-              onPress={handleSubmitOrder}
-            >
-              <Text style={styles.submitButtonText}>Submit Order</Text>
-            </Pressable>
+        <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
+          <View style={styles.modalContainer}>
+            <TouchableWithoutFeedback onPress={() => {}}>
+              <View style={styles.modalContent}>
+                <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+                  <Image source={require('@/assets/icons/close.png')} style={styles.closeIcon} />
+                </TouchableOpacity>
+                <Text style={styles.modalTitle}>Order Details</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Shop Name"
+                  value={shopName}
+                  onChangeText={(text) => {
+                    setShopName(text);
+                  }}
+                />
+                <View style={styles.pickerContainer}>
+                  <Picker
+                    selectedValue={marketName}
+                    style={styles.picker}
+                    onValueChange={(itemValue) => {
+                      setMarketName(itemValue);
+                    }}
+                  >
+                    <Picker.Item label="Select a market" value="" />
+                    <Picker.Item label="Banglabazar" value="Banglabazar" />
+                    <Picker.Item label="Bhadrashan" value="Bhadrashan" />
+                    <Picker.Item label="Boharatola" value="Boharatola" />
+                    <Picker.Item label="Bondorkhola" value="Bondorkhola" />
+                    <Picker.Item label="Chanderchar" value="Chanderchar" />
+                    <Picker.Item label="Choto Kutubpur" value="Choto Kutubpur" />
+                    <Picker.Item label="Ganganagar" value="Ganganagar" />
+                    <Picker.Item label="Kazirhat" value="Kazirhat" />
+                    <Picker.Item label="Majhirghat" value="Majhirghat" />
+                    <Picker.Item label="Matborchar" value="Matborchar" />
+                    <Picker.Item label="Naodoba" value="Naodoba" />
+                    <Picker.Item label="Panchar" value="Panchar" />
+                    <Picker.Item label="Shakpur" value="Shakpur" />
+                    <Picker.Item label="Sheruail" value="Sheruail" />
+                    <Picker.Item label="Shibchar Sadar 1" value="Shibchar Sadar 1" />
+                    <Picker.Item label="Shibchar Sadar 2" value="Shibchar Sadar 2" />
+                    <Picker.Item label="Shibchar Sadar 3" value="Shibchar Sadar 3" />
+                    <Picker.Item label="Shibchar Sadar 4" value="Shibchar Sadar 4" />
+                    <Picker.Item label="Surjonagar" value="Surjonagar" />
+                    <Picker.Item label="Zajira 1" value="Zajira 1" />
+                    <Picker.Item label="Zajira 2" value="Zajira 2" />
+                  </Picker>
+                </View>
+                <Pressable
+                  style={styles.submitButton}
+                  onPress={handleSubmitOrder}
+                >
+                  <Text style={styles.submitButtonText}>Submit Order</Text>
+                </Pressable>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </Modal>
     </View>
   );
