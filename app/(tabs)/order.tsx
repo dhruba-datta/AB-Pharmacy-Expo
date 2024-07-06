@@ -4,6 +4,8 @@ import { useCart } from '@/app/context/CartContext';
 import { Picker } from '@react-native-picker/picker';
 import * as Linking from 'expo-linking';
 import { styles } from '@/styles/order';
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
 type Product = {
   'Brand Name': string;
@@ -19,11 +21,30 @@ type CartItem = Product & {
   quantity: number;
 };
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-ExtraBold': require('@/assets/fonts/Poppins-ExtraBold.ttf'),
+  });
+};
+
 export default function Order() {
   const { cart, removeAllFromCart } = useCart() as unknown as { cart: CartItem[], removeAllFromCart: (brandName: string) => void };
   const [modalVisible, setModalVisible] = useState(false);
   const [shopName, setShopName] = useState('');
   const [marketName, setMarketName] = useState('');
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  if (!fontsLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontsLoaded(true)}
+        onError={console.warn}
+      />
+    );
+  }
 
   const renderItem = ({ item }: { item: CartItem }) => (
     <View style={styles.cartItem}>
@@ -75,10 +96,13 @@ export default function Order() {
       />
       <View style={styles.totalPriceContainer}>
         <Text style={styles.totalPriceText}>
-          Total Price: ৳
-          {cart.reduce((total, item) => total + item.Price * item.quantity, 0).toFixed(2)}
+          <Text style={styles.totalPriceLabelText}>Total Price: </Text>
+          <Text style={styles.totalPriceValueText}>
+            ৳{cart.reduce((total, item) => total + item.Price * item.quantity, 0).toFixed(2)}
+          </Text>
         </Text>
         <Pressable style={[styles.orderButton, cart.length === 0 && styles.disabledOrderButton]} onPress={handleOrderNow} disabled={cart.length === 0}>
+          <Image source={require('@/assets/icons/order.png')} style={styles.buttonIcon} />
           <Text style={styles.orderButtonText}>Order Now</Text>
         </Pressable>
       </View>
@@ -135,6 +159,7 @@ export default function Order() {
                   style={styles.submitButton}
                   onPress={handleSubmitOrder}
                 >
+                  <Image source={require('@/assets/icons/check.png')} style={styles.buttonIcon} />
                   <Text style={styles.submitButtonText}>Submit Order</Text>
                 </Pressable>
               </View>

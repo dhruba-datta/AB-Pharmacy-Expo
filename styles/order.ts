@@ -19,12 +19,13 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   cartItemText: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 16,
+    fontFamily: 'Poppins-Bold',
     color: '#333',
   },
   cartItemQuantity: {
-    fontSize: 16,
+    fontSize: 14,
+    fontFamily: 'Poppins-Regular',
     color: '#555',
   },
   cartItemPriceContainer: {
@@ -33,9 +34,10 @@ export const styles = StyleSheet.create({
   },
   cartItemTotalPrice: {
     fontSize: 16,
-    color: 'green',
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
+    color: '#005C55', // Updated color for individual prices
     marginRight: 10,
+    marginTop: 7,
   },
   removeButton: {
     paddingVertical: 5,
@@ -49,6 +51,7 @@ export const styles = StyleSheet.create({
   emptyText: {
     textAlign: 'center',
     fontSize: 18,
+    fontFamily: 'Poppins-Regular',
     marginTop: 20,
     color: '#999',
   },
@@ -65,9 +68,15 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   totalPriceText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#005C55',
+    fontSize: 18,
+    fontFamily: 'Poppins-Bold',
+    flexDirection: 'row', // To allow nested texts to be aligned properly
+  },
+  totalPriceLabelText: {
+    color: '#000', // Black for "Total Price"
+  },
+  totalPriceValueText: {
+    color: '#005C55', // Green for the actual price value
   },
   orderButton: {
     marginTop: 10,
@@ -76,10 +85,14 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
     alignItems: 'center',
+    flexDirection: 'row', // Align items in a row
+    justifyContent: 'center', // Center items horizontally
   },
   orderButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
+    fontSize: 14,
+    marginLeft: 6, // Add some space between icon and text
   },
   disabledOrderButton: {
     backgroundColor: '#aaa',
@@ -99,7 +112,7 @@ export const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
     marginBottom: 20,
     textAlign: 'center',
     color: '#005C55',
@@ -111,6 +124,7 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 15,
     paddingHorizontal: 10,
+    fontFamily: 'Poppins-Regular',
   },
   pickerContainer: {
     height: 40,
@@ -128,11 +142,15 @@ export const styles = StyleSheet.create({
     backgroundColor: '#005C55',
     padding: 10,
     borderRadius: 5,
+    flexDirection: 'row', // Align items in a row
+    justifyContent: 'center', // Center items horizontally
+    alignItems: 'center', // Center items vertically
   },
   submitButtonText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
     textAlign: 'center',
+    marginLeft: 5, // Add some space between icon and text
   },
   disabledButton: {
     backgroundColor: '#aaa',
@@ -147,5 +165,10 @@ export const styles = StyleSheet.create({
   closeIcon: {
     width: 24,
     height: 24,
+  },
+  buttonIcon: {
+    width: 20,
+    height: 20,
+    tintColor: '#fff',
   },
 });
