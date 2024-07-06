@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
   resetIcon: {
     width: 25,
     height: 25,
-    tintColor: '#006769',
+    tintColor: '#186F65',
   },
   card: {
     flexDirection: 'row',
@@ -101,7 +101,7 @@ export const styles = StyleSheet.create({
   },
   price: {
     fontSize: 16,
-    color: '#006769',
+    color: '#186F65',
     fontWeight: 'bold',
     fontFamily: 'Poppins-Bold',
   },
@@ -113,7 +113,7 @@ export const styles = StyleSheet.create({
   },
   addToCartButton: {
     flexDirection: 'row',  // Add this line to ensure icon and text are in one line
-    backgroundColor: '#006769',
+    backgroundColor: '#186F65',
     paddingVertical: 8,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -127,14 +127,14 @@ export const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
   },
   outOfStockButton: {
-    backgroundColor: 'red',
+    backgroundColor: '#dc3545',
   },
   quantitySelector: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   quantityButtonContainer: {
-    backgroundColor: '#006769',
+    backgroundColor: '#186F65',
     paddingVertical: 2,
     paddingHorizontal: 12,
     borderRadius: 5,

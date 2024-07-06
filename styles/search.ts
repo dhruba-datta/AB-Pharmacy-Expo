@@ -87,13 +87,17 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 110,
+    width: 118,
   },
-  quantityButtonContainer: {
+ quantityButtonContainer: {
     backgroundColor: '#186F65',
+    paddingVertical: 2,
+    paddingHorizontal: 12,
     borderRadius: 5,
-    paddingVertical: 8,
-    paddingHorizontal: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 35,
+    height: 35,
   },
   quantityButton: {
     color: '#fff',

@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   cartItemTotalPrice: {
     fontSize: 16,
     fontFamily: 'Poppins-Bold',
-    color: '#005C55', // Updated color for individual prices
+    color: '#186F65', // Updated color for individual prices
     marginRight: 10,
     marginTop: 7,
   },
@@ -76,11 +76,11 @@ export const styles = StyleSheet.create({
     color: '#000', // Black for "Total Price"
   },
   totalPriceValueText: {
-    color: '#005C55', // Green for the actual price value
+    color: '#186F65', // Green for the actual price value
   },
   orderButton: {
     marginTop: 10,
-    backgroundColor: '#005C55',
+    backgroundColor: '#186F65',
     padding: 15,
     borderRadius: 10,
     width: '100%',
@@ -115,7 +115,7 @@ export const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     marginBottom: 20,
     textAlign: 'center',
-    color: '#005C55',
+    color: '#186F65',
   },
   input: {
     height: 40,
@@ -139,7 +139,7 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   submitButton: {
-    backgroundColor: '#005C55',
+    backgroundColor: '#186F65',
     padding: 10,
     borderRadius: 5,
     flexDirection: 'row', // Align items in a row
