@@ -41,6 +41,7 @@ export const styles = StyleSheet.create({
   },
   marketNameCell: {
     flex: 1.3,
+    textAlign: 'left',
   },
   orderCell: {
     flex: 1,
@@ -56,7 +57,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   marketNameText: {
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Poppins-Medium',
     fontSize: 14,
   },
   modalOverlay: {
