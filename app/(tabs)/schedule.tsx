@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, ScrollView, TouchableOpacity, Modal, TouchableWithoutFeedback, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Modal, TouchableWithoutFeedback, Image, ActivityIndicator, FlatList } from 'react-native';
 import Papa from 'papaparse';
 import * as Font from 'expo-font';
 import { styles } from '@/styles/schedule';
@@ -14,21 +14,30 @@ interface ScheduleData {
   delivery: string;
 }
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-Medium': require('@/assets/fonts/Poppins-Medium.ttf'),
+  });
+};
+
 const Schedule = () => {
   const [data, setData] = useState<ScheduleData[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedDescription, setSelectedDescription] = useState('');
   const [selectedMarketName, setSelectedMarketName] = useState('');
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadFonts = async () => {
-      await Font.loadAsync({
-        'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Medium': require('@/assets/fonts/Poppins-Medium.ttf'),
-      });
-      setFontsLoaded(true);
+      try {
+        await fetchFonts();
+        setFontsLoaded(true);
+      } catch (error) {
+        console.warn(error);
+      }
     };
 
     loadFonts();
@@ -42,7 +51,6 @@ const Schedule = () => {
           header: false,
           skipEmptyLines: true,
           complete: (results) => {
-            console.log('Parsed results:', results.data); 
             const rows = (results.data as string[][]).slice(3);
             const relevantData = rows.map(row => ({
               marketName: row[1] || '',
@@ -51,7 +59,7 @@ const Schedule = () => {
               delivery: row[4] || '',
             }));
             setData(relevantData);
-            console.log('Relevant data:', relevantData);
+            setLoading(false);
           },
         });
       })
@@ -64,7 +72,7 @@ const Schedule = () => {
     setModalVisible(true);
   };
 
-  const renderRow = (index: number, item: ScheduleData) => {
+  const renderRow = ({ item, index }: { item: ScheduleData; index: number }) => {
     const colorIndex = Math.floor(index / 4) % 2;
     const rowStyle = colorIndex === 0 ? styles.tableRowEven : styles.tableRowOdd;
 
@@ -83,10 +91,6 @@ const Schedule = () => {
     );
   };
 
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Order & Delivery</Text>
@@ -95,9 +99,20 @@ const Schedule = () => {
         <Text style={[styles.tableCell, styles.headerCell, styles.orderCell]}>Order</Text>
         <Text style={[styles.tableCell, styles.headerCell, styles.deliveryCell]}>Delivery</Text>
       </View>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {data.map((item, index) => renderRow(index, item))}
-      </ScrollView>
+      {loading ? (
+        <View style={styles.loadingOverlay}>
+          <ActivityIndicator size="large" color="#186F65" />
+        </View>
+      ) : data.length > 0 ? (
+        <FlatList
+          data={data}
+          renderItem={renderRow}
+          keyExtractor={(item, index) => index.toString()}
+          contentContainerStyle={styles.scrollContainer}
+        />
+      ) : (
+        <Text style={styles.noResults}>No data found.</Text>
+      )}
 
       <Modal
         transparent={true}

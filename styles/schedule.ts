@@ -108,4 +108,15 @@ export const styles = StyleSheet.create({
   tableRowOdd: {
     backgroundColor: '#EEEEEE',
   },
+  loadingOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noResults: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: '#888',
+  },
 });
