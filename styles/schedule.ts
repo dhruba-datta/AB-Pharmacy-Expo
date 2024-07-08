@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#f8f8f8',
     padding: 15,
     paddingBottom: 2,
   },
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#f1f1f1',
+    backgroundColor: '#EFF5F5',
     width: '100%',
   },
   tableRow: {
@@ -33,13 +33,14 @@ export const styles = StyleSheet.create({
     width: '100%',
   },
   tableCell: {
+    fontFamily: 'Poppins-Regular',
     padding: 10,
-    borderWidth: 1,
+    borderWidth: 0.2,
     borderColor: '#ccc',
     textAlign: 'center',
   },
   marketNameCell: {
-    flex: 2,
+    flex: 1.3,
   },
   orderCell: {
     flex: 1,
@@ -53,12 +54,6 @@ export const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',
     paddingBottom: 5,
-  },
-  mergedCell: {
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    textAlign: 'center',
   },
   marketNameText: {
     fontFamily: 'Poppins-Regular',
@@ -106,11 +101,10 @@ export const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
-  // New styles for alternating row colors
   tableRowEven: {
-    backgroundColor: '#F1FDFF', // White for odd rows
+    backgroundColor: '#fff',
   },
   tableRowOdd: {
-    backgroundColor: '#f9f9f9', // Light gray for even rows
+    backgroundColor: '#EEEEEE',
   },
 });

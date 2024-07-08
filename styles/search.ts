@@ -54,19 +54,19 @@ export const styles = StyleSheet.create({
   },
   productTitle: {
     fontSize: 14,
-    fontFamily: 'Poppins-Bold', // Ensure this matches the loaded font name
+    fontFamily: 'Poppins-Bold',
   },
   productPrice: {
     fontSize: 14,
     color: '#333',
-    fontFamily: 'Poppins-Regular', // Ensure this matches the loaded font name
+    fontFamily: 'Poppins-Regular',
   },
   buttonContainer: {
-    width: 120, // Set a fixed width for the button container
+    width: 120,
   },
   addToCartButton: {
-    flexDirection: 'row', // Add this line
-    alignItems: 'center', // Add this line
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#186F65',
     paddingVertical: 7,
     paddingHorizontal: 10,
@@ -75,18 +75,18 @@ export const styles = StyleSheet.create({
   addToCartText: {
     color: '#fff',
     fontSize: 14,
-    fontFamily: 'Poppins-Medium', // Ensure this matches the loaded font name
+    fontFamily: 'Poppins-Medium',
     textAlign: 'center',
   },
   outOfStockButton: {
-    backgroundColor: '#dc3545', // Red color for out of stock button
+    backgroundColor: '#dc3545',
   },
   noProductsText: {
     textAlign: 'center',
     marginTop: 20,
     fontSize: 16,
     color: '#555',
-    fontFamily: 'Poppins-Regular', // Ensure this matches the loaded font name
+    fontFamily: 'Poppins-Regular',
   },
   quantitySelector: {
     flexDirection: 'row',
@@ -94,7 +94,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: 118,
   },
- quantityButtonContainer: {
+  quantityButtonContainer: {
     backgroundColor: '#186F65',
     paddingVertical: 2,
     paddingHorizontal: 12,
@@ -116,10 +116,9 @@ export const styles = StyleSheet.create({
     fontFamily: 'Poppins-Bold',
   },
   buttonIcon: {
-    width: 20, // Set the width of the icon
-    height: 20, // Set the height of the icon
-    marginRight: 2, // Add some margin to the right of the icon
+    width: 20,
+    height: 20,
+    marginRight: 2,
     tintColor: '#fff',
-
   },
 });

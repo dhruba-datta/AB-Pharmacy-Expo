@@ -54,7 +54,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 12,
     paddingBottom: 0,
-    
   },
   productTitle: {
     fontSize: 14,
@@ -77,8 +76,8 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   addToCartButton: {
-    flexDirection: 'row', // Add this line
-    alignItems: 'center', // Add this line
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#186F65',
     paddingVertical: 7,
     paddingHorizontal: 10,
@@ -87,11 +86,11 @@ export const styles = StyleSheet.create({
   addToCartText: {
     color: '#fff',
     fontSize: 14,
-    fontFamily: 'Poppins-Medium', // Ensure this matches the loaded font name
+    fontFamily: 'Poppins-Medium',
     textAlign: 'center',
   },
   outOfStockButton: {
-    backgroundColor: '#dc3545', // Red color for out of stock button
+    backgroundColor: '#dc3545',
   },
   quantitySelector: {
     flexDirection: 'row',
@@ -99,7 +98,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: 118,
   },
- quantityButtonContainer: {
+  quantityButtonContainer: {
     backgroundColor: '#186F65',
     paddingVertical: 2,
     paddingHorizontal: 12,
@@ -139,46 +138,22 @@ export const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
     color: '#333',
   },
-  // companyGrid: {
-  //   flexDirection: 'row',
-  //   flexWrap: 'wrap',
-  //   justifyContent: 'space-between',
-  //   marginBottom: 24,
-  // },
-  // companyCell: {
-  //   width: '48%',
-  //   backgroundColor: '#f8f8f8',
-  //   borderRadius: 8,
-  //   paddingVertical: 16,
-  //   alignItems: 'center',
-  //   marginBottom: 16,
-  // },
-  // companyCellText: {
-  //   fontSize: 16,
-  //   fontFamily: 'Poppins-Medium',
-  //   color: '#333',
-  // },
-
   companyGrid: {
-     flexDirection: 'column',  // Change to column
-     marginBottom: 24,
-   },
-
-   companyCell: {
-     backgroundColor: '#fff',
-     borderRadius: 8,
-     paddingVertical: 16,
-     alignItems: 'center',
-     marginBottom: 16,
-   },
-
-   companyCellText: {
-     fontSize: 16,
-     fontFamily: 'Poppins-Medium',
-     color: '#333',
-   },
-
-
+    flexDirection: 'column',
+    marginBottom: 24,
+  },
+  companyCell: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    paddingVertical: 16,
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  companyCellText: {
+    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+    color: '#333',
+  },
   shopByCategoriesHeader: {
     fontSize: 24,
     fontFamily: 'Poppins-Bold',
@@ -193,9 +168,9 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
   buttonIcon: {
-    width: 18, // Set the width of the icon
-    height: 18, // Set the height of the icon
-    marginRight: 2, // Add some margin to the right of the icon
+    width: 18,
+    height: 18,
+    marginRight: 2,
     tintColor: '#fff',
   },
 });

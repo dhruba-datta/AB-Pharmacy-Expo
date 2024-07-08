@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Linking, Image } from 'react-native';
+import { Text, View, TouchableWithoutFeedback, Linking, Image } from 'react-native';
 import * as Font from 'expo-font';
+import { styles } from '@/styles/contact';
 
 const Contact: React.FC = () => {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -10,7 +11,7 @@ const Contact: React.FC = () => {
       await Font.loadAsync({
         'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
         'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-ExtraBold': require('@/assets/fonts/Poppins-ExtraBold.ttf'),
+        'Poppins-Medium': require('@/assets/fonts/Poppins-Medium.ttf'),
       });
       setFontsLoaded(true);
     };
@@ -19,7 +20,7 @@ const Contact: React.FC = () => {
   }, []);
 
   if (!fontsLoaded) {
-    return null; // or render a custom loading component
+    return null;
   }
 
   const handlePress = (url: string) => {
@@ -59,51 +60,3 @@ const Contact: React.FC = () => {
 };
 
 export default Contact;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    padding: 20,
-  },
-  header: {
-    fontSize: 28,
-    fontFamily: 'Poppins-Bold',
-    color: '#186F65',
-  },
-  contactInfo: {
-    fontSize: 18,
-    color: 'gray',
-    marginBottom: 5,
-    fontFamily: 'Poppins-Regular',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-    backgroundColor: '#ccc',
-  },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#186F65',
-    padding: 15,
-    borderRadius: 5,
-    marginTop: 10,
-    width: '80%',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontFamily: 'Poppins-Bold',
-    color: 'white',
-    fontSize: 14,
-    marginLeft: 10,
-  },
-  icon: {
-    width: 24,
-    height: 24,
-    tintColor: 'white',
-  },
-});

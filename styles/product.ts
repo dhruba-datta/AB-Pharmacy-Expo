@@ -108,13 +108,13 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 119,
+    width: 130,
   },
   addToCartButton: {
-    flexDirection: 'row',  // Add this line to ensure icon and text are in one line
+    flexDirection: 'row',
     backgroundColor: '#186F65',
     paddingVertical: 8,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',

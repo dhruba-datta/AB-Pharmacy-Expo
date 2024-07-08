@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "AB Pharmacy",
-    "slug": "ab.pharmacy",
-    "version": "1.0.0",
+    "slug": "pharma",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dhrubadatta.pharma"
     },
     "web": {
       "bundler": "metro",
@@ -38,8 +39,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "d24cc810-2711-40f2-850e-255d30854882"
+        "projectId": "041dc16b-fb9b-46c1-89e4-16dc584793d9"
       }
-    }
+    },
+    "owner": "dhruba-datta"
   }
 }

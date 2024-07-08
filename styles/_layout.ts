@@ -15,12 +15,6 @@ export const styles = StyleSheet.create({
     marginLeft: 2,
     tintColor: '#F9F3F3',
   },
-  whatsappIcon: {
-    width: 25,
-    height: 25,
-    marginRight: 10,
-    tintColor: '#F9F3F3',
-  },
   searchIcon: {
     width: 26,
     height: 26,
@@ -48,6 +42,6 @@ export const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: 'bold',
     textAlign: 'center',
-    lineHeight: 12, // Ensures text is vertically centered
+    lineHeight: 12,
   },
 });

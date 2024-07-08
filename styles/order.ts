@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   cartItemTotalPrice: {
     fontSize: 16,
     fontFamily: 'Poppins-Bold',
-    color: '#186F65', // Updated color for individual prices
+    color: '#186F65',
     marginRight: 10,
     marginTop: 7,
   },
@@ -70,13 +70,13 @@ export const styles = StyleSheet.create({
   totalPriceText: {
     fontSize: 18,
     fontFamily: 'Poppins-Bold',
-    flexDirection: 'row', // To allow nested texts to be aligned properly
+    flexDirection: 'row',
   },
   totalPriceLabelText: {
-    color: '#000', // Black for "Total Price"
+    color: '#000',
   },
   totalPriceValueText: {
-    color: '#186F65', // Green for the actual price value
+    color: '#186F65',
   },
   orderButton: {
     marginTop: 10,
@@ -85,14 +85,14 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
     alignItems: 'center',
-    flexDirection: 'row', // Align items in a row
-    justifyContent: 'center', // Center items horizontally
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   orderButtonText: {
     color: '#fff',
     fontFamily: 'Poppins-Bold',
     fontSize: 14,
-    marginLeft: 6, // Add some space between icon and text
+    marginLeft: 6,
   },
   disabledOrderButton: {
     backgroundColor: '#aaa',
@@ -108,7 +108,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 20,
     borderRadius: 10,
-    position: 'relative', // Added to position the close button
+    position: 'relative',
   },
   modalTitle: {
     fontSize: 20,
@@ -142,18 +142,15 @@ export const styles = StyleSheet.create({
     backgroundColor: '#186F65',
     padding: 10,
     borderRadius: 5,
-    flexDirection: 'row', // Align items in a row
-    justifyContent: 'center', // Center items horizontally
-    alignItems: 'center', // Center items vertically
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   submitButtonText: {
     color: '#fff',
     fontFamily: 'Poppins-Bold',
     textAlign: 'center',
-    marginLeft: 5, // Add some space between icon and text
-  },
-  disabledButton: {
-    backgroundColor: '#aaa',
+    marginLeft: 5,
   },
   closeButton: {
     position: 'absolute',
