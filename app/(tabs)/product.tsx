@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, FlatList, Pressable, Image, ActivityIndicator, RefreshControl, TextInput } from 'react-native';
 import Papa from 'papaparse';
-import { useCart, CartItem } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
 import { useNavigation, useRoute, useIsFocused, RouteProp, CompositeNavigationProp, NavigationProp } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
 import * as Font from 'expo-font';
@@ -20,7 +20,7 @@ type Product = {
 type RootStackParamList = {
   ProductDetails: { product: Product };
   Product: { category?: string; company?: string };
-  search: undefined; // Define 'search' screen
+  search: undefined;
 };
 
 type ProductScreenNavigationProp = CompositeNavigationProp<
@@ -32,7 +32,7 @@ const fetchFonts = () => {
   return Font.loadAsync({
     'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
     'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-ExtraBold': require('@/assets/fonts/Poppins-ExtraBold.ttf'),
+    'Poppins-Medium': require('@/assets/fonts/Poppins-Medium.ttf'),
   });
 };
 
@@ -47,6 +47,7 @@ const ProductScreen = () => {
   const [selectedFilterType, setSelectedFilterType] = useState<string>('Category');
   const [selectedCategoryOrCompany, setSelectedCategoryOrCompany] = useState<string>('All');
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [dataFetched, setDataFetched] = useState(false);
   const defaultFilterType = useRef<string>('Category');
   const defaultCategoryOrCompany = useRef<string>('All');
   const { addToCart, removeFromCart, cart } = useCart();
@@ -70,9 +71,11 @@ const ProductScreen = () => {
   }, []);
 
   useEffect(() => {
-    if (isFocused) {
+    if (isFocused && !dataFetched) {
       setLoading(true);
       fetchData();
+    } else if (isFocused) {
+      applyFilters();
     }
   }, [category, company, isFocused]);
 
@@ -85,15 +88,9 @@ const ProductScreen = () => {
           skipEmptyLines: true,
           complete: (results) => {
             const allProducts = results.data as Product[];
-            const filteredProducts = category
-              ? allProducts.filter(product => product['Category'] === category)
-              : company
-                ? allProducts.filter(product => product['Company'] === company)
-                : allProducts;
             setData(allProducts);
-            setFilteredData(filteredProducts);
-            setSelectedCategoryOrCompany(category || company || defaultCategoryOrCompany.current);
-            setSelectedFilterType(category ? 'Category' : company ? 'Company' : defaultFilterType.current);
+            setDataFetched(true);
+            applyFilters(allProducts);
             setLoading(false);
             setRefreshing(false);
           },
@@ -104,6 +101,17 @@ const ProductScreen = () => {
         setLoading(false);
         setRefreshing(false);
       });
+  };
+
+  const applyFilters = (allProducts: Product[] = data) => {
+    const filteredProducts = category
+      ? allProducts.filter(product => product['Category'] === category)
+      : company
+        ? allProducts.filter(product => product['Company'] === company)
+        : allProducts;
+    setFilteredData(filteredProducts);
+    setSelectedCategoryOrCompany(category || company || defaultCategoryOrCompany.current);
+    setSelectedFilterType(category ? 'Category' : company ? 'Company' : defaultFilterType.current);
   };
 
   const handleSearch = (text: string) => {
@@ -248,8 +256,8 @@ const ProductScreen = () => {
       </View>
       {loading ? (
         <View style={styles.loadingOverlay}>
-        <ActivityIndicator size="large" color="#186F65" />
-      </View>
+          <ActivityIndicator size="large" color="#186F65" />
+        </View>
       ) : filteredData.length > 0 ? (
         <FlatList
           data={filteredData}

@@ -25,7 +25,7 @@ const fetchFonts = () => {
   return Font.loadAsync({
     'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
     'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-ExtraBold': require('@/assets/fonts/Poppins-ExtraBold.ttf'),
+    'Poppins-Medium': require('@/assets/fonts/Poppins-Medium.ttf'),
   });
 };
 
@@ -54,7 +54,7 @@ export default function Order() {
   }, []);
 
   if (!fontsLoaded) {
-    return null; // or render a custom loading component
+    return null;
   }
 
   const renderItem = ({ item }: { item: CartItem }) => (
@@ -89,7 +89,6 @@ export default function Order() {
     const url = `https://wa.me/8801912555765?text=${encodeURIComponent(message)}`;
     Linking.openURL(url);
 
-    // Clear the cart after opening the URL
     cart.forEach(item => removeAllFromCart(item['Brand Name']));
 
     setModalVisible(false);

@@ -6,7 +6,6 @@ import { styles } from '@/styles/ProductDetails';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-// Define a type for the product
 type Product = {
   'Brand Name': string;
   Description: string;
@@ -17,12 +16,10 @@ type Product = {
   Stock: string;
 };
 
-// Define a type for the cart item, extending the product type
 type CartItem = Product & {
   quantity: number;
 };
 
-// Define a type for the route params
 type RouteParams = {
   params: {
     product: Product;
@@ -33,7 +30,7 @@ const fetchFonts = () => {
   return Font.loadAsync({
     'Poppins-Regular': require('@/assets/fonts/Poppins-Regular.ttf'),
     'Poppins-Bold': require('@/assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-ExtraBold': require('@/assets/fonts/Poppins-ExtraBold.ttf'),
+    'Poppins-Medium': require('@/assets/fonts/Poppins-Medium.ttf'),
   });
 };
 
@@ -47,7 +44,7 @@ const ProductDetails = () => {
   const cartItem = cart.find(cartItem => cartItem['Brand Name'] === product['Brand Name']);
 
   const handleAddToCart = () => {
-    const newCartItem: CartItem = { ...product, quantity: 1 }; // Initialize quantity to 1
+    const newCartItem: CartItem = { ...product, quantity: 1 };
     addToCart(newCartItem);
   };
 
@@ -82,7 +79,7 @@ const ProductDetails = () => {
         <Text style={styles.infoText}>Company: {product['Company']}</Text>
         <Text style={styles.infoText}>Category: {product['Category']}</Text>
       </View>
-        <Text style={styles.price}>Price: ৳{product['Price']}</Text>
+      <Text style={styles.price}>Price: ৳{product['Price']}</Text>
 
       {product['Stock'] === 'Y' ? (
         cartItem ? (
