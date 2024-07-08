@@ -2,7 +2,7 @@
   "expo": {
     "name": "AB Pharmacy",
     "slug": "pharma",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -42,6 +42,12 @@
         "projectId": "041dc16b-fb9b-46c1-89e4-16dc584793d9"
       }
     },
-    "owner": "dhruba-datta"
+    "owner": "dhruba-datta",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/041dc16b-fb9b-46c1-89e4-16dc584793d9"
+    }
   }
 }
