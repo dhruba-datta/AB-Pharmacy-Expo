@@ -132,7 +132,7 @@ const Home: React.FC = () => {
       <View style={styles.categoryHeader}>
         <Text style={styles.categoryTitle}>{category}</Text>
         <Pressable onPress={() => navigation.navigate('product', { category })}>
-          <Text style={styles.showAll}>Show All</Text>
+          <Text style={styles.showAll}>Show all {'>'}</Text>
         </Pressable>
       </View>
       <FlatList
