@@ -81,20 +81,29 @@ export default function Order() {
       Alert.alert('Warning', 'Please fill in all the fields.');
       return;
     }
-
-    const orderDetails = cart.map(item => `${item['Brand Name']} - ${item.quantity}`).join('\n');
-    const totalPrice = cart.reduce((total, item) => total + item.Price * item.quantity, 0).toFixed(2);
+  
+    // Sort the cart items first by category and then by brand name within each category
+    const sortedCart = [...cart].sort((a, b) => {
+      if (a.Category === b.Category) {
+        return a['Brand Name'].localeCompare(b['Brand Name']);
+      }
+      return a.Category.localeCompare(b.Category);
+    });
+  
+    const orderDetails = sortedCart.map(item => `${item['Brand Name']} - ${item.quantity}`).join('\n');
+    const totalPrice = sortedCart.reduce((total, item) => total + item.Price * item.quantity, 0).toFixed(2);
     const message = `Shop: ${shopName}\nMarket: ${marketName}\n\nOrder:\n${orderDetails}\n\nTotal Price: ৳${totalPrice}`;
-
+  
     const url = `https://wa.me/8801912555765?text=${encodeURIComponent(message)}`;
     Linking.openURL(url);
-
-    cart.forEach(item => removeAllFromCart(item['Brand Name']));
-
+  
+    sortedCart.forEach(item => removeAllFromCart(item['Brand Name']));
+  
     setModalVisible(false);
     setShopName('');
     setMarketName('');
   };
+  
 
   return (
     <View style={styles.container}>
