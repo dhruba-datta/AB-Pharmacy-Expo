@@ -1,41 +1,39 @@
 # AB-Pharmacy🔥![GitHub watchers](https://img.shields.io/github/watchers/dhruba-datta/AB-Pharmacy-Expo?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/dhruba-datta/AB-Pharmacy-Expo?style=social) ![](https://visitor-badge.glitch.me/badge?page_id=dhruba-datta.dhruba-datta/AB-Pharmacy-Expo")
 
-**[AB-Pharmacy](https://drive.google.com/file/d/1d-SpGExNebycXrFragbLfaREkqJQVCFB/view?usp=sharing)** is an android application made with React Native Expo for commercial purpose of a medical store to showcase their product and let user to order them directly from the app.
+**[AB-Pharmacy](https://drive.google.com/file/d/1d-SpGExNebycXrFragbLfaREkqJQVCFB/view?usp=sharing)**  is an Android application built with React Native Expo, designed for the commercial needs of a medical store. The app allows users to browse, search, and order products directly from the store with ease.
 
 ## ✅ Features
 
-- Sorted by Categories and Companies
-- Search and filter by both category and company
-- Details about all products available
-- Add to cart and order now option
-- Schedule chart available for different market
-- Contact page
+- Sort by Categories and Companies
+- Search and Filter
+- Detailed Product Information
+- Add to Cart & Order Now
+- Market Schedule Chart
+- WhatsApp Integration
+- Quantity Selector
+- Contact Page & Order Form
 
 ## 🐣 Demo
 
 ### Home Page
+![Untitled design](https://github.com/user-attachments/assets/71a23a72-3420-4cc4-9502-570dee99a30b)
 
-![Opera Snapshot_2022-09-14_123539_cryptoverse20 netlify app](https://user-images.githubusercontent.com/74358627/190084698-b4fc6b8e-d8f1-4c60-9c0c-67d79271da07.png)
 
 ### Product Page
+![Untitled design (1)](https://github.com/user-attachments/assets/b25f4985-c94f-469b-94c4-739e51d48358)
 
-![image](https://user-images.githubusercontent.com/74358627/190084776-7d95bae5-b91e-448c-bd8c-4b392dc2e696.png)
 
-### Schedule Page
+### Search & Product Details Page
+![Untitled design](https://github.com/user-attachments/assets/b9df5e35-e789-4a96-b3e4-de1778e077ac)
 
-![image](https://user-images.githubusercontent.com/74358627/190084885-bc3ab93e-ba63-4ba4-92ed-02b3d3b4eba4.png)
 
-### Contact Page
+### Schedule & Contact Page
+![Untitled design (1)](https://github.com/user-attachments/assets/e2f94a32-e4bc-4a85-a999-0bb451ffda38)
 
-![image](https://user-images.githubusercontent.com/74358627/190084963-c6add249-4e38-42f5-8277-56a8a012f55f.png)
 
-### Search Page
+### Cart & Order
+![Untitled design (2)](https://github.com/user-attachments/assets/cfb183bf-5bae-4d47-a5c0-156fb0b48d21)
 
-![image](https://user-images.githubusercontent.com/74358627/190084963-c6add249-4e38-42f5-8277-56a8a012f55f.png)
-
-### Cart Page
-
-![image](https://user-images.githubusercontent.com/74358627/190084963-c6add249-4e38-42f5-8277-56a8a012f55f.png)
 
 ## 🚀 About Me
 
