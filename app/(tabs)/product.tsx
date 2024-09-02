@@ -88,9 +88,16 @@ const ProductScreen = () => {
           skipEmptyLines: true,
           complete: (results) => {
             const allProducts = results.data as Product[];
-            setData(allProducts);
+  
+            // Clean up the category data by removing leading numbers and periods
+            const cleanedProducts = allProducts.map(product => ({
+              ...product,
+              'Category': product['Category'].replace(/^\d+\.\s*/, ''), // Removes leading numbers and period
+            }));
+  
+            setData(cleanedProducts);
             setDataFetched(true);
-            applyFilters(allProducts);
+            applyFilters(cleanedProducts);
             setLoading(false);
             setRefreshing(false);
           },
@@ -102,6 +109,7 @@ const ProductScreen = () => {
         setRefreshing(false);
       });
   };
+  
 
   const applyFilters = (allProducts: Product[] = data) => {
     const filteredProducts = category

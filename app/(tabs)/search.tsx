@@ -48,8 +48,13 @@ const Search: React.FC = () => {
           header: true,
           skipEmptyLines: true,
           complete: (results: ParseResult<Product>) => {
-            setData(results.data);
-            setFilteredData(results.data);
+            // Modify Category field to remove numbers and dot
+            const modifiedData = results.data.map(item => ({
+              ...item,
+              Category: item.Category ? item.Category.replace(/^\d+\.\s*/, '') : '',
+            }));
+            setData(modifiedData);
+            setFilteredData(modifiedData);
             setLoading(false);
             setRefreshing(false);
           },
@@ -61,6 +66,7 @@ const Search: React.FC = () => {
         setRefreshing(false);
       });
   };
+  
 
   useEffect(() => {
     const loadFonts = async () => {

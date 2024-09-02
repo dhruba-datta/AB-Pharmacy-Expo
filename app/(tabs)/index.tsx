@@ -61,12 +61,17 @@ const Home: React.FC = () => {
     fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vQYGe49CMfHtSVXwpeytgh5FvCT-06ec539uGMx25oWgEzZo1RvBZaGgZpPTDDW2w/pub?gid=185816065&output=csv')
       .then(response => response.text())
       .then(csvText => {
-        Papa.parse(csvText, {
+        Papa.parse<Product>(csvText, {
           header: true,
           skipEmptyLines: true,
           complete: (results: ParseResult<Product>) => {
-            setData(results.data);
-            setFilteredData(results.data);
+            // Modify Category field to remove numbers and dot
+            const modifiedData = results.data.map(item => ({
+              ...item,
+              Category: item.Category ? item.Category.replace(/^\d+\.\s*/, '') : '',
+            }));
+            setData(modifiedData);
+            setFilteredData(modifiedData);
             setLoading(false);
             setRefreshing(false);
           },
@@ -78,6 +83,7 @@ const Home: React.FC = () => {
         setRefreshing(false);
       });
   };
+  
 
   const groupByCategory = (products: Product[]) => {
     return products.reduce((groups, product) => {
