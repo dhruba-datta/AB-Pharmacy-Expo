@@ -1,24 +1,28 @@
 import { Link } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, GestureResponderEvent } from 'react-native';
+
+// Explicit type assertion for href
+type HrefType = string; // Change this if HrefType is an object
 
 export function ExternalLink(
-  props: Omit<React.ComponentProps<typeof Link>, 'href'> & { href: string }
+  props: Omit<React.ComponentProps<typeof Link>, 'href'> & { href: HrefType }
 ) {
+  const handlePress = (e: GestureResponderEvent | MouseEvent) => {
+    if (Platform.OS !== 'web') {
+      // Prevent default behavior for non-web platforms
+      e.preventDefault();
+      WebBrowser.openBrowserAsync(props.href as string);
+    }
+  };
+
   return (
     <Link
       target="_blank"
       {...props}
-      href={props.href}
-      onPress={(e) => {
-        if (Platform.OS !== 'web') {
-          // Prevent the default behavior of linking to the default browser on native.
-          e.preventDefault();
-          // Open the link in an in-app browser.
-          WebBrowser.openBrowserAsync(props.href as string);
-        }
-      }}
+      href={props.href as any} // Use type assertion here if necessary
+      onPress={handlePress as any} // Handle both event types
     />
   );
 }

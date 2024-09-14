@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, TouchableOpacity, Linking, View, Text } from 'react-native';
 import { Tabs } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
@@ -6,6 +6,7 @@ import { useColorScheme } from '@/components/useColorScheme';
 import Colors from '@/constants/Colors';
 import { styles } from '@/styles/_layout';
 import { useCart } from '@/app/context/CartContext';
+import LoginScreen from './LoginScreen'; // Import the LoginScreen
 
 interface TabBarIconProps {
   source: any;
@@ -32,7 +33,7 @@ function HeaderRight() {
       <TouchableOpacity onPress={() => navigation.navigate('search')}>
         <Image source={require('@/assets/icons/search.png')} style={styles.searchIcon} />
       </TouchableOpacity>
-      
+
       <TouchableOpacity onPress={() => navigation.navigate('order')}>
         <View>
           <Image source={require('@/assets/icons/cart.png')} style={styles.headerIcon} />
@@ -53,6 +54,12 @@ function HeaderLogo() {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track the login state
+
+  // If not logged in, show the login screen
+  if (!isLoggedIn) {
+    return <LoginScreen setIsLoggedIn={setIsLoggedIn} />; // Pass the login state setter
+  }
 
   return (
     <Tabs
@@ -66,7 +73,8 @@ export default function TabLayout() {
         headerTintColor: '#F9F3F3',
         headerRight: () => <HeaderRight />,
         headerTitle: () => <HeaderLogo />,
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -113,6 +121,13 @@ export default function TabLayout() {
         name="search"
         options={{
           title: 'Search',
+          tabBarButton: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name="LoginScreen"
+        options={{
+          title: 'LoginScreen',
           tabBarButton: () => null,
         }}
       />
