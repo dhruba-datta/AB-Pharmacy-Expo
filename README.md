@@ -12,6 +12,7 @@
 - WhatsApp Integration
 - Quantity Selector
 - Contact Page & Order Form
+- Login page fetched code from Google Sheet
 
 ## 🐣 Demo
 
@@ -27,8 +28,8 @@
 ![Untitled design](https://github.com/user-attachments/assets/b9df5e35-e789-4a96-b3e4-de1778e077ac)
 
 
-### Schedule & Contact Page
-![Untitled design (1)](https://github.com/user-attachments/assets/e2f94a32-e4bc-4a85-a999-0bb451ffda38)
+### Login, Schedule & Contact
+![Untitled design](https://github.com/user-attachments/assets/0062f937-9012-47d2-81ae-ee6bc6bc3ab1)
 
 
 ### Cart & Order
