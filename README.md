@@ -37,4 +37,4 @@
 
 ## 🚀 About Me
 
-I'm **[Dhruba Datta](https://dhruba-datta.netlify.app)**, currently graduated from Delhi Technological University(DTU) in Software Engineering. Currently learning Data Structures and Algorithms, while understanding and implementing the fundamentals of computer engineering and learning web development.
+I'm **[Dhruba Datta](https://dhruba-datta.netlify.app)**, graduated from Delhi Technological University(DTU) in Software Engineering. Currently learning Data Structures and Algorithms, while understanding and implementing the fundamentals of computer engineering and learning web development.
